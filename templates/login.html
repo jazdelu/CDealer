@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+
+{% block title %}登录{% endblock %}
+
+
+{% block left %}
+<div class="left_content">
+            <div class="title"><span class="title_icon"><img src="/cdealer/images/bullet1.gif" alt="" title="" /></span>用户登录</div>
+        
+        	<div class="feat_prod_box_details">
+            <p class="details">
+             请输入正确的用户名和密码
+            </p>
+                
+              	<div class="contact_form">
+                <div class="form_subtitle">用户登录</div>
+                 <form name="login" action="/cdealer/login/" method="POST">    
+				{% if errors%}
+					<ul class="errorlist">
+						{% for error in errors %}
+						<li>{{ error }}</li>
+						{% endfor %}
+					</ul>
+				{% endif %}    
+                    <div class="form_row">
+					<p>{{ form.errors.username }}</p>
+                    <label class="contact"><strong>用户名:</strong></label>
+                    {{ form.username }}
+                    </div>  
+
+
+                    <div class="form_row">
+					<p>{{ form.errors.password }}</p>
+                    <label class="contact"><strong>密码:</strong></label>
+                    {{ form.password }}
+                    </div>                     
+
+                    <div class="form_row">
+                        <div class="terms">
+                        {{ form.isremember }}
+                        <label style="line-height:5px;">记住密码</label> <a style="float:right;margin-right:25px;" href="/cdealer/change_pswd/">忘记密码？</a>
+                        </div>
+                    </div> 
+
+                    
+                    <div class="form_row">
+
+                    <input type="submit" class="register" value="登录" style="float:right;margin-right:25px" />
+                    </div>   
+                    
+                  </form>     
+                    
+                </div>  
+            
+            </div>	
+            
+              
+
+            
+
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load comments %}
+{% block title %}专辑详情{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/cdealer/css/style.css" />
+<link rel="stylesheet" href="/cdealer/css/lightbox.css" type="text/css" media="screen" />
+{% endblock %}

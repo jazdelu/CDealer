@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}查看购物车{% endblock %}
+
+{% block left %}
+       	<div class="left_content">
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>我的购物车</div>
+        
+        	<div class="feat_prod_box_details">
+            
+<table id="hor-minimalist-a">
+    <thead>
+    	<tr>
+        	<th scope="col">专辑名称</th>
+            <th scope="col">数量</th>
+            <th scope="col">合计</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for item in cart_items %}
+    	<tr>
+        	<td>{{ item.product.name }}</td>
+            <td>{{ item.get_price }}</td>
+            <td>{{ item.total_price }}</td>
+        </tr>
+		{% empty %}
+		<p>购物车中没有专辑</p>
+		{% endfor %}
+    </tbody>
+</table>
+            <a href="#" class="continue">&lt; continue</a>
+            <a href="#" class="checkout">checkout &gt;</a>         
+            </div>	
+            
+              
+
+            
+
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+
+{% endblock %}

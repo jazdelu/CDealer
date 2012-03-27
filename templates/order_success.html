@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}下单成功{% endblock %}
+{% block left %}
+<div class="left_content">
+<div class="panel">
+<h1>恭喜你，下单成功</h2>
+{% if not user.is_authenticated %}
+<h1>游客请牢记订单号，以便查询</h1>
+{% endif %}
+<h3>{{ form.errors }}</h3>
+</div>
+<div class="panel">
+  <dl>
+    <dt><h3>收货信息：</h3></dt>
+	<dd>{{ order.receiver_name }} , {{ order.receiver_phone }} , {{ order.receiver_address }} , {{ order.receiver_postcode }}</dd>
+  </dl>
+</div>
+<div>
+  <h3>订单信息：</h3>
+  <dl>
+    <dt>订单编号:</dt>
+    <dd>{{ order.seriesnum }}</dd>
+    <dt>成交时间:</dt>
+	<dd>{{ order.date|date:"Y-m-d H:i" }}</dd>
+  </dl>
+<table class="table">
+  <tr>
+    <th>专辑名称</th>
+    <th>单价</th>
+    <th>数量</th>
+    <th>总价</th>
+  </tr>
+  {% for item in order.cart.get_items %}
+  <tr>
+    <td>{{ item.product.name }}</td>
+    <td>{{ item.product.price }}</td>
+    <td>{{ item.amount }}</td>
+    {% if forloop.first %}
+	<td rowspan="{{ order.amount_of_item }}">{{ order.cart.total_price }}</td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+</div>
+<div class="clear"></div>
+</div>
+{% endblock %}
+

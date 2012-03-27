@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block title %}订单查询{% endblock %}
+
+{% block left %}
+	<div class="left_content">
+        	<div class="crumb_nav">
+            <a href="/cdealer/index/">主页</a> &gt;&gt; 订单查询
+            </div>
+            <div class="title"><span class="title_icon"><img src="/cdealer/images/bullet1.jpg" alt="" title="" /></span>专辑列表</div>
+<div class="search_row">
+<form action="/cdealer/album/" name="search" method="GET">
+<table border="0" cellpadding="0" cellspacing="0" class="tab_search">
+	<tr>
+		<td>
+			<input type="text" name="q" title="Search" class="searchinput" id="searchinput" onkeydown="if (event.keyCode==13) {}" onblur="if(this.value=='')value='- Search Products -';" onfocus="if(this.value=='- Search Products -')value='';" value="- Search Products -" size="10"/>
+		</td>
+		<td>
+			<input type="image" width="21" height="17" class="searchaction" onclick="if(document.forms['search'].searchinput.value=='- Search Products -') document.forms['search'].searchinput.value='';" alt="Search" src="/cdealer/images/magglass.gif" border="0" hspace="2"/>
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+<div style="display:block;float:left;margin:10px 0 0 10px;">
+		<table class="table">
+			<tr>
+				<th>专辑名称</th>
+				<th>单价(元)</th>
+				<th>数量</th>
+				<th>实付款</th>
+				<th>订单状态(元)</th>
+			</tr>
+			{% for order in orders %}
+			<tr>
+				<td class="table_title" colspan="5">订单编号:{{ order.seriesnum }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;成交时间:{{ order.date|date:"Y-m-d H:i" }}</td>
+			</tr>
+			{% for item in order.get_items%}
+			<tr>
+			<td>{{ item.product.name }}</td>
+			<td>{{ item.get_price }}</td>
+			<td>{{ item.amount }}</td>
+			{% if forloop.first %}
+			<td rowspan="{{ order.amount_of_item }}" >{{ order.total_price }}</td>
+			<td rowspan="{{ order.amount_of_item }}" >{{ order.get_status_display }}</td>
+			{% endif %}
+			</tr>
+			{% endfor %}
+			{% endfor %}
+		</table>
+</div>          
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+
+{% endblock %}          

@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+
+{% block title %}修改密码{% endblock %}
+
+{% block left %}
+<div class="left_content">
+            <div class="title"><span class="title_icon"><img src="/cdealer/images/bullet1.gif" alt="" title="" /></span>密码设置</div>
+        
+        	<div class="feat_prod_box_details">
+            <p class="details">
+             请设置密码强度较高的密码
+            </p>
+                
+              	<div class="contact_form">
+                <div class="form_subtitle">修改密码</div>
+                 <form name="login" action="/cdealer/profile/change_pswd/" method="POST">    
+
+					<div class="form_row">
+					<p>{{ form.errors.opswd }}</p>
+					{% if error %}
+						<p>
+							<ul class="errorlist">
+								<li>
+									{{ error }}
+								</li>
+							</ul>
+						</p>
+					{% endif %}
+                    <label class="contact"><strong>输入旧密码:</strong></label>
+                    {{ form.opswd }}
+                    </div>
+                    <div class="form_row">
+					<p>{{ form.errors.npswd }}</p>
+                    <label class="contact"><strong>输入新密码:</strong></label>
+                    {{ form.npswd }}
+                    </div>
+                    <div class="form_row">
+					<p>{{ form.errors.cpswd }}</p>
+                    <label class="contact"><strong>确认密码:</strong></label>
+                    {{ form.cpswd }}
+                    </div>			
+
+
+                    
+                    <div class="form_row">
+
+                    <input type="submit" class="register" value="提交" style="float:right;margin-right:25px" />
+                    </div>   
+                    
+                  </form>     
+                    
+                </div>  
+            
+            </div>	
+            
+              
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+{% endblock %}

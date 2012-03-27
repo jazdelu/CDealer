@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}查看购物车{% endblock %}
+
+{% block left %}
+       	<div class="left_content">
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>我的购物车</div>
+        
+        	<div class="feat_prod_box_details">
+            
+<table id="hor-minimalist-a">
+    <thead>
+    	<tr>
+        	<th scope="col">Employee</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Bonus</th>
+            <th scope="col">Supervisor</th>
+        </tr>
+    </thead>
+    <tbody>
+		{% for item in cart_items %}
+    	<tr>
+        	<td>Stephen C. Cox</td>
+            <td>$300</td>
+            <td>$50</td>
+            <td>Bob</td>
+        </tr>
+		{% empty %}
+		<p>购物车中没有专辑</p>
+		{% endfor %}
+    </tbody>
+</table>
+            <a href="#" class="continue">&lt; continue</a>
+            <a href="#" class="checkout">checkout &gt;</a>         
+            </div>	
+            
+              
+
+            
+
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+
+{% endblock %}

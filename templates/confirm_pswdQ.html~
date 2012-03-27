@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}密码提示认证{% endblock %}
+
+{% block left %}
+<div class="left_content">
+            <div class="title"><span class="title_icon"><img src="/cdealer/images/bullet1.gif" alt="" title="" /></span>密码提示</div>
+        
+        	<div class="feat_prod_box_details">
+            <p class="details">
+             请输入正确的密码提示答案
+            </p>
+                
+              	<div class="contact_form">
+                <div class="form_subtitle">密码提示认证</div>
+                 <form name="login" action="/cdealer/change_pswd/" method="POST">    
+                    <div class="form_row">
+					<p>{{ form.errors.pswd_q }}</p>
+                    <label class="contact"><strong>密码提示问题:</strong></label>
+                    {{ form.pswd_q }}
+                    </div>
+
+                    <div class="form_row">
+					<p>{{ form.errors.pswd_a }}</p>
+					{% if errors %}
+						<p><ul class="errorlist">
+						{% for error in errors %}
+						<li>
+							{{ error }}
+						</li>
+						{% endfor %}
+						</ul><p>
+					{% endif %}
+                    <label class="contact"><strong>密码提示答案:</strong></label>
+                    {{ form.pswd_a }}
+                    </div>
+		
+  
+
+                     
+
+
+                    
+                    <div class="form_row">
+
+                    <input type="submit" class="register" value="登录" style="float:right;margin-right:25px" />
+                    </div>   
+                    
+                  </form>     
+                    
+                </div>  
+            
+            </div>	
+            
+              
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+{% endblock %}

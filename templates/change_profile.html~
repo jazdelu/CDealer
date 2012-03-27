@@ -1,0 +1,69 @@
+{% extends "base.html"%}
+{% block title %}修改资料{% endblock %}
+{% block left %}
+       	<div class="left_content">
+            <div class="title"><span class="title_icon"><img src="/cdealer/images/bullet1.gif" alt="" title="" /></span>修改资料</div>
+        
+        	<div class="feat_prod_box_details">
+            <p class="details">
+             请认真填写以下信息
+            </p>
+
+              	<div class="contact_form">
+                <div class="form_subtitle">个人信息</div>
+                 <form name="register" action="/cdealer/profile/change_profile/" method="POST">          
+                    <div class="form_row">
+					{{ form.username.errors }}
+                    <label class="contact"><strong>*用户名:</strong></label>
+                    <input id="id_username" type="text" name="username" value="{{ user.username }}" readonly="readonly">
+                    </div>                
+
+                    <div class="form_row">
+					{{ form.first_name.errors }}
+                    <label class="contact"><strong>姓:</strong></label>
+                    <input id="id_first_name" type="text" name="first_name" value="{{ user.first_name }}">
+                    </div> 
+
+                    <div class="form_row">
+					{{ form.last_name.errors }}
+                    <label class="contact"><strong>名:</strong></label>
+                    <input id="id_last_name" type="text" name="last_name" value="{{ user.last_name }}">
+                    </div>
+
+                    <div class="form_row">
+					{{ form.phonenum.errors }}
+                    <label class="contact"><strong>电话号码:</strong></label>
+                    <input id="id_phonenum" type="text" name="phonenum" value="{{ uf.phonenum }}">
+                    </div>  
+
+                    <div class="form_row">
+					{{ form.postcode.errors }}
+                    <label class="contact"><strong>邮政编码:</strong></label>
+                    <input id="id_postcode" type="text" name="postcode" value="{{ uf.postcode }}">
+                    </div> 
+
+                    <div class="form_row">
+					{{ form.address.errors }}
+                    <label class="contact"><strong>地址:</strong></label>
+                    <textarea id="id_address" cols="21" rows="4" name="address">{{ uf.address }}</textarea>
+                    </div>
+                    
+                    <div class="form_row">
+					<input type="reset" style="margin-right=100px;margin-left=30px;" class="register" value="重置">
+					<input type="submit" class="register"  value="提交" />
+
+                    </div>   
+                  </form>     
+                </div>  
+            
+          </div>	
+            
+              
+
+            
+
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+     {% endblock %}
+       

@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load comments %}
+{% block title %}专辑详情{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/cdealer/css/style.css" />
+{% endblock %}
+
+{% block js %}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+	<script src="/cdealer/js/tab.jquery.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+	function bindPostCommentHandler() {
+    $('#comment_form form').submit(function() {
+        $.ajax({
+            type: "POST",
+            data: $('#comment_form form').serialize(),
+            url: "{% comment_form_target %}",
+            cache: false,
+            dataType: "html",
+            success: function(html, textStatus) {
+                $('#comment_form form').replaceWith(html);
+                bindPostCommentHandler();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $('#comment_form form').replaceWith('Your comment was unable to be posted at this time.  We apologise for the inconvenience.');
+            }
+        });
+        return false;
+    });
+}
+
+
+
+     $(document).ready( function() { bindPostCommentHandler(); 
+						$("#example-two").organicTabs({ "speed": 200}); 
+
+});
+</script>
+{% endblock %}
+
+{% block left %}
+              	<div class="left_content">
+        	<div class="crumb_nav">
+            <a href="index.html">home</a> &gt;&gt; 专辑详情
+            </div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>{{ album.name }}</div>
+        
+        	<div class="feat_prod_box_details">
+            
+            	<div class="prod_img"><a href="{{ album.cover.url }}"><img src="{{ album.cover.url_300x300 }}" alt="" title="" border="0" /></a>
+                <br /><br />
+				<form name="addform" action="/cdealer/cart/add_item/" method="POST">
+				<p><input type="hidden" name="item_id" value="{{ album.id }}"></p>
+				<p><input type="hidden" name="from"></p>
+				<p><input type="text" name="amount" class="item_amount" id="item_amount" value="1"></p>
+				
+				<label style="width:30px;float:left;font-size:16px;" >件</label><br/></br>
+                <p><a href="javascript:void(0)" onclick="javascript:document.addform.submit();" class="button_style">添加至购物车</a></p>  
+				</form>
+                </div>
+                <div class="prod_det_box">
+                	<div class="box_top"></div>
+                    <div class="box_center">
+                  
+						<div class="details">
+						<div class="new_prod_row">
+                        <label>专辑名称:</label><a href="details.html">{{ album.name }}</a>
+						</div>
+						<div class="new_prod_row">
+						<label>艺人:</label><a href="?a={{ album.artist.id }}">{{ album.artist }}</a>
+						</div>
+						<div class="new_prod_row">
+						<label style="margin-right:0;">风格:</label> 
+						{% for category in album.category.all %}
+							<a style="margin-left:3px;" href="?c={{ category.id }}">{{ category.name }}</a>
+						{% endfor %}
+						</div>
+						<div class="new_prod_row">
+						<span>价格:￥{{ album.price }}</span>
+						<span style="margin-left:75px;">发行日期: {{ album.release_date|date:"Y-m-d" }}</span> 
+						</div>
+						</div> 
+
+                    <a href="details.html" class="more"><img src="images/order_now.gif" alt="" title="" border="0" /></a>
+                    <div class="clear"></div>
+                    </div>
+                    
+                    <div class="box_bottom"></div>
+                </div>    
+            <div class="clear"></div>
+            </div>	
+            
+              
+            <div id="example-two">
+
+                <ul  class="nav">
+                <li class="nav-one"><a href="#intro" class="current">详细信息</a></li>
+                <li class="nav-two"><a href="#comments">用户评论</a></li>
+                </ul>
+    
+            <div class="list-wrap">
+            
+                    <ul id="intro">
+                       <li><p>{{ album.intro }}</p></li>                      
+                    </ul>	
+                    
+                    <ul id="comments" class="hide">
+					
+					{% get_comment_list for album as comment_list %}
+					{% for comment in comment_list %}
+                        <li>
+						<p class="name">{{ comment.user_name }}:</p>
+						<p class="date">{{ comment.submit_date|date:"Y-m-d" }}</p>
+						<p class="content">{{ comment.comment }}</p>
+						</li>           
+					
+					{% empty %}
+						<li>暂无评论</li>
+					{% endfor %}
+					{% if user.is_authenticated %}
+						{% get_comment_form for album as form %}
+						<div id="comment_form">
+							<form action="{% comment_form_target %}" method="POST">
+							
+								{{form.object_pk}}{{form.content_type}}{{form.timestamp}}{{form.security_hash}}
+							       <p><label for="id_name">姓名：</label><input name="name" id="id_name" class="name" readonly="readonly" type="text" value="{{ user.username }}"></p>
+        <p><label for="id_email">email：</label><input type="text" class="email" name="email" id="id_email" value="{{ user.email  }}" ></p>
+        <p><label for="id_url">网站：</label><input type="text" class="url" name="url" id="id_url"></p>
+        <p><label for="id_comment">评论：</label>
+        {{ form.comment }}</p>
+        <p><input name="post" value="发表" type="submit" class="button" /></p>	
+		
+							
+							</form>
+					  </div>
+					{% else %}
+								
+					{% endif %}
+					</ul>
+
+				</div>
+				</div>
+
+ 
+                    <div class="clear"></div>
+
+            
+
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+{% endblock %}

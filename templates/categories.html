@@ -1,0 +1,7 @@
+                <ul class="list">
+				{% for category in categories %}
+                	<li><a href="#">{{ category.name }}</a></li>
+				{% empty %}
+					<li>没有专辑分类！</li>
+				{% endfor %}
+                </ul>

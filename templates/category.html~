@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% block title %}商品列表{% endblock %}
+
+{% block left %}
+       	<div class="left_content">
+        	<div class="crumb_nav">
+            <a href="index.html">home</a> &gt;&gt; category name
+            </div>
+            <div class="title"><span class="title_icon"><img src="images/bullet1.gif" alt="" title="" /></span>Category jewels</div>
+           
+           <div class="new_products">
+               {% for album in albums %}
+                    <div class="new_prod_box">
+                        <a href="details.html">{{ album.name }}</a>
+                        <div class="new_prod_bg">
+                        <a href="details.html"><img src="/cdealer/upload/{{ album.cover.url_100x100 }}" alt="" title="" class="thumb" border="0" /></a>
+                        </div>           
+                    </div>
+               {% empty %}
+                      <p>暂无商品</p>
+               {% endfor %}                 
+                    
+            <div class="pagination">
+            <span class="disabled"><<</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=199">10</a><a href="#?page=200">11</a><a href="#?page=2">>></a>
+            </div>  
+            
+            </div> 
+          
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+
+{% endblock %}          
+     
+       

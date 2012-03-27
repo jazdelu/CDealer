@@ -1,0 +1,106 @@
+{% extends "index.html"%}
+{% block title %}新用户注册{% endblock %}
+{% block left %}
+       	<div class="left_content">
+            <div class="title"><span class="title_icon"><img src="/cdealer/images/bullet1.gif" alt="" title="" /></span>新用户注册</div>
+        
+        	<div class="feat_prod_box_details">
+            <p class="details">
+             请认真填写以下信息，带*号为必填项,且无法更改
+            </p>
+
+              	<div class="contact_form">
+                <div class="form_subtitle">个人信息</div>
+                 <form name="register" action="/cdealer/register/" method="POST">          
+                    <div class="form_row">
+					{{ form.username.errors }}
+                    <label class="contact"><strong>*用户名:</strong></label>
+                    {{ form.username }}
+                    </div>  
+
+
+                    <div class="form_row">
+					{{ form.password.errors }}
+                    <label class="contact"><strong>*密码:</strong></label>
+                    {{ form.password }}
+                    </div> 
+
+                    <div class="form_row">
+					{{ form.cpassword.errors }}
+                    <label class="contact"><strong>*确认密码:</strong></label>
+                    {{ form.cpassword }}
+                    </div>
+
+                    <div class="form_row">
+					{{ form.email.errors }}
+                    <label class="contact"><strong>*电子邮件:</strong></label>
+                    {{ form.email }}
+                    </div> 
+
+                    <div class="form_row">
+					{{ form.idnum.errors }}
+                    <label class="contact"><strong>*身份证号码:</strong></label>
+                    {{ form.idnum }}
+                    </div>
+                    
+                    <div class="form_row">
+					{{ form.pswd_q.errors }}
+                    <label class="contact"><strong>*密码提示问题:</strong></label>
+                    {{ form.pswd_q }}
+                    </div>
+                    
+                    <div class="form_row">
+					{{ form.pswd_a.errors }}
+                    <label class="contact"><strong>*密码提示答案:</strong></label>
+                    {{ form.pswd_a }}
+                    </div>                    
+
+                    <div class="form_row">
+					{{ form.first_name.errors }}
+                    <label class="contact"><strong>姓:</strong></label>
+                    {{ form.first_name }}
+                    </div> 
+
+                    <div class="form_row">
+					{{ form.last_name.errors }}
+                    <label class="contact"><strong>名:</strong></label>
+                    {{ form.last_name }}
+                    </div>
+
+                    <div class="form_row">
+					{{ form.phonenum.errors }}
+                    <label class="contact"><strong>电话号码:</strong></label>
+                    {{ form.phonenum }}
+                    </div>  
+
+                    <div class="form_row">
+					{{ form.postcode.errors }}
+                    <label class="contact"><strong>邮政编码:</strong></label>
+                    {{ form.postcode }}
+                    </div> 
+
+                    <div class="form_row">
+					{{ form.address.errors }}
+                    <label class="contact"><strong>地址:</strong></label>
+                    <textarea id="id_address" cols="21" rows="4" name="address"></textarea>
+                    </div>
+                    
+                    <div class="form_row">
+					<input type="reset" style="margin-right=100px;margin-left=30px;" class="register" value="重置">
+					<input type="submit" class="register"  value="注册" />
+
+                    </div>   
+                  </form>     
+                </div>  
+            
+          </div>	
+            
+              
+
+            
+
+            
+        <div class="clear"></div>
+        </div><!--end of left content-->
+     {% endblock %}
+       
