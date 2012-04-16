@@ -1,5 +1,5 @@
-{% extends "base.html"%}
-{% block title %}新用户注册{% endblock %}
+{% extends "index.html"%}
+{% block title %}填写订单{% endblock %}
 {% block left %}
        	<div class="left_content">
             <div class="title"><span class="title_icon"><img src="/cdealer/images/bullet1.gif" alt="" title="" /></span>新用户注册</div>

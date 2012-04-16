@@ -40,3 +40,4 @@ def delete_item(request):
 	else:
 		pass
 	return HttpResponseRedirect(request.META['HTTP_REFERER'])
+

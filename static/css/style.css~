@@ -232,7 +232,7 @@ background:url(../images/box_bottom.gif) no-repeat center top;
 .new_prod_box{
 float:left;
 text-align:left;
-padding:10px;
+padding:2px;
 }
 
 .addcart a:link{
@@ -251,6 +251,9 @@ width:100px;
 height:100px;
 background:url(../images/new_prod_box.gif) no-repeat center;
 float:left;
+}
+.new_prod_box img:hover:before{
+background:rgba(0,0,0,0.5)
 }
 .new_prod_intro{
 width:350px;
@@ -879,149 +882,7 @@ color:#636365;
 	margin-left:0px;
 	}
 
-/*--------------popup-----------------*/
-#backgroundPopup{
-display:none;
-position:fixed;
-_position:absolute; /* hack for internet explorer 6*/
-height:100%;
-width:100%;
-top:0;
-left:0;
-background:#000000;
-border:1px solid #cecece;
-z-index:1;
-}
-#popupContact{
-display:none;
-position:fixed;
-_position:absolute; /* hack for internet explorer 6*/
-height:550px;
-width:420px;
-	background:#f7f7f7;
-	background:-moz-linear-gradient(90deg, #ccc, #fff); /* Firefox */
-	background:-webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* Webkit */
-	border:1px solid #aaa;
-	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	-moz-box-shadow:0 0 15px #aaa;
-	-webkit-box-shadow:0 0 15px #aaa;
-border:2px solid #cecece;
-z-index:2;
-padding:12px;
-font-size:13px;
-}
 
-
-#popupContactClose{
-font-size:14px;
-line-height:14px;
-right:10px;
-top:10px;
-position:absolute;
-color:#6fa5fd;
-font-weight:700;
-display:block;
-cursor:pointer;
-}
-
-#popupContact a{
-	color:#333;
-	text-decoration:underline;
-}
-#popupContact form{
-	margin:15px auto 0;
-	padding:20px;
-	width:400px;
-}
-#popupContact h1{
-	border-bottom:1px solid #ccc;
-	font-size:18px;
-	font-weight:bold;
-	letter-spacing:2px;
-	margin-bottom:20px;
-	text-transform:uppercase;
-	color:#000;
-}
-#popupContact form p{
-	margin-bottom:20px;
-}
-
-#popupContact label{
-	cursor:pointer;
-	display:block;
-	float:left;
-	font-size:13px;
-	font-weight:bold;
-	line-height:28px;
-	margin-bottom:5px;
-	width:120px;
-}
-#popupContact form p:hover label{
-	color:#666;
-}
-#popupContact form p .radio{
-line-height:1.3em;
-padding-right:10px;
-}
-#popupContact input[type=text],
-#popupContact textarea,
-#popupContact input[type=password]{
-	background: rgba(255, 255, 255, 0.9);
-	background:-moz-linear-gradient(90deg, #fff, #eee); /* Firefox */
-	background:-webkit-gradient(linear, left top, left bottom, from(#eee), to(#fff), color-stop(0.2, #fff)); /* Webkit */
-	border:1px solid #aaa;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	-moz-box-shadow:0 0 3px #aaa;
-	-webkit-box-shadow:0 0 3px #aaa;
-	padding:5px;
-}
-#popupContact textarea{
-width:230px;
-height:100px;
-}
-#popupContact input[type=text]:focus,
-#popupContact textarea:focus,
-#popupContact input[type=password]:focus{
-	border-color:#666;
-	-moz-box-shadow:0 0 3px #555;
-	-webkit-box-shadow:0 0 3px #555;
-	outline:none; /* Pour enlever le contour jaune lorsque l'on s閘ectionne un input dans Chrome */
-}
-
-#popupContact input[type=submit],
-#popupContact a.submit{
-	float:right;
-	background:#333;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	-moz-box-shadow:0 1px 0 #fff;
-	-webkit-box-shadow:0 1px 0 #fff;
-	color:#ddd;
-	cursor:pointer;
-	font-family:Arial,sans-serif;
-	font-size:12px;
-	font-weight:bold;
-	margin-right:35px;
-	padding:5px 10px;
-	text-decoration:none;
-	text-shadow:0 1px 1px #333;
-	text-transform:uppercase;
-}
-#popupContact input[type=submit]:hover,
-#popupContact a.submit:hover{
-	background:#ddd;
-	color:#333;
-	text-decoration:none;
-}
-#popupContact input[type=submit]:active,
-#popupContact input[type=submit]:focus,
-#popupContact a.submit:active,
-#popupContact a.submit:focus{
-	background:#ccc;
-	outline:none;
-}
 /*-----------------table-----------------*/
 dt dl dd{
 display:block;
@@ -1050,7 +911,7 @@ caption {
 	text-align: left;
 	padding: 6px 6px 6px 12px;
 	background: #ECF1EF;
-	margin-bottom:1px;
+	border-collapse:collapse;
 }
 
 .table th.nobg {
@@ -1074,10 +935,21 @@ caption {
 	color: #555;
 }
 
-
 .table td.alt {
 	background: #F5FAFA;
 	color: #555;
+}
+.table td a:link{
+color:#333;
+text-decoration:none;
+}
+.table td a:visited{
+color:#333;
+text-decoration:none;
+}
+.table td a:hover{
+color:#999;
+text-decoration:underline;
 }
 
 .table th.spec {
@@ -1095,6 +967,49 @@ caption {
 	color: #797268;
 }
 
-
+/*--------------------gallery------------------*/
+.clear {
+    clear:both
+}
+ 
+#gallery {
+    position:relative;
+    height:360px
+}
+    #gallery a {
+	display:block;
+        position:absolute;
+	top:40px;
+    }
+     
+    #gallery a img {
+        border:none;
+    }
+     
+    #gallery a.show {
+        z-index:500
+    }
+ 
+    #gallery .caption {
+        z-index:600; 
+        background-color:#000; 
+        color:#ffffff; 
+        height:100px; 
+        width:100%; 
+        position:absolute;
+        bottom:0;
+	top:340px;
+    }
+ 
+    #gallery .caption .content {
+        margin:5px;
+	overflow:hidden;
+    }
+     
+    #gallery .caption .content h3 {
+        margin:0;
+        padding:0;
+        color:#1DCCEF;
+    }
 
 

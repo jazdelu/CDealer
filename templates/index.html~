@@ -1,104 +1,95 @@
 {% extends "base.html" %}
 
 {% block title %}CDealer 主页{% endblock %}
+{% block js %}
+<script>
+function slideShow() {
 
+	//Set the opacity of all images to 0
+	$('#gallery a').css({opacity: 0.0});
+	
+	//Get the first image and display it (set it to full opacity)
+	$('#gallery a:first').css({opacity: 1.0});
+	
+	//Set the caption background to semi-transparent
+	$('#gallery .caption').css({opacity: 0.7});
+
+	//Resize the width of the caption according to the image width
+	$('#gallery .caption').css({width: $('#gallery a').find('img').css('width')});
+	
+	//Get the caption of the first image from REL attribute and display it
+	$('#gallery .content').html($('#gallery a:first').find('img').attr('rel'))
+	.animate({opacity: 0.7}, 400);
+	
+	//Call the gallery function to run the slideshow, 6000 = change to next image after 6 seconds
+	setInterval('gallery()',6000);
+	
+}
+
+function gallery() {
+	
+	//if no IMGs have the show class, grab the first image
+	var current = ($('#gallery a.show')?  $('#gallery a.show') : $('#gallery a:first'));
+
+	//Get next image, if it reached the end of the slideshow, rotate it back to the first image
+	var next = ((current.next().length) ? ((current.next().hasClass('caption'))? $('#gallery a:first') :current.next()) : $('#gallery a:first'));	
+	
+	//Get next image caption
+	var caption = next.find('img').attr('rel');	
+	
+	//Set the fade in effect for the next image, show class has higher z-index
+	next.css({opacity: 0.0})
+	.addClass('show')
+	.animate({opacity: 1.0}, 1000);
+
+	//Hide the current image
+	current.animate({opacity: 0.0}, 1000)
+	.removeClass('show');
+	
+	//Set the opacity to 0 and height to 1px
+	$('#gallery .caption').animate({opacity: 0.0}, { queue:false, duration:50 }).animate({height: '1px'}, { queue:true, duration:300 });	
+	
+	//Animate the caption, opacity to 0.7 and heigth to 100px, a slide up effect
+	$('#gallery .caption').animate({opacity: 0.7},100 ).animate({height: '100px'},500 );
+	
+	//Display the content
+	$('#gallery .content').html(caption);
+	
+	
+}
+$(document).ready(function() {      
+     
+    //Execute the slideShow
+    slideShow();
+ 
+});
+
+</script>
+{% endblock %}
 {% block left %}
 <div class="left_content">	
             <div class="title"><span class="title_icon"><img src="images/bullet7.gif" alt="" title="" /></span>热卖场</div>
         
-        	<div class="feat_prod_box">
-            
-            	<div class="prod_img"><a href="details.html"><img src="images/prod1.gif" alt="" title="" border="0" /></a></div>
-                
-                <div class="prod_det_box">
-                	<div class="box_top"></div>
-                    <div class="box_center">
-                    <div class="prod_title">Product name</div>
-                    <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                    <a href="details.html" class="more">- more details -</a>
-                    <div class="clear"></div>
-                    </div>
-                    
-                    <div class="box_bottom"></div>
-                </div>    
-            <div class="clear"></div>
-            </div>	
-            
-            
-        	<div class="feat_prod_box">
-            
-            	<div class="prod_img"><a href="details.html"><img src="images/prod2.gif" alt="" title="" border="0" /></a></div>
-                
-                <div class="prod_det_box">
-                	<div class="box_top"></div>
-                    <div class="box_center">
-                    <div class="prod_title">Product name</div>
-                    <p class="details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                    <a href="details.html" class="more">- more details -</a>
-                    <div class="clear"></div>
-                    </div>
-                    
-                    <div class="box_bottom"></div>
-                </div>    
-            <div class="clear"></div>
-            </div>      
+<div id="gallery">
+    {% for album in gallery %}
+    <a href="/cdealer/album/{{ album.id }}/" class="show">
+    <img src="{{ album.cover.url_400x400 }}" alt="" title="" width="400" height="400" rel="<h3>{{ album.name }}</h3>{{ album.intro|truncatewords:20 }}"/></a>
+    </a>  
+    {% endfor %}
+    <div class="caption"><div class="content"></div></div>
+</div>
+<div class="clear"></div>  
             
             
             
-           <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>新上架</div> 
+           <div class="title" style="margin-top:100px;"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>新上架</div> 
            
            <div class="new_products">
-           
+           {% for album in new_list %}
                     <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <span class="new_icon"><img src="images/new_icon.gif" alt="" title="" /></span>
-                        <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>
-                    
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <span class="new_icon"><img src="images/new_icon.gif" alt="" title="" /></span>
-                        <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>                    
-                    
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <span class="new_icon"><img src="images/new_icon.gif" alt="" title="" /></span>
-                        <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>
-                    
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <span class="new_icon"><img src="images/new_icon.gif" alt="" title="" /></span>
-                        <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>
-                    
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <span class="new_icon"><img src="images/new_icon.gif" alt="" title="" /></span>
-                        <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>                    
-                    
-                    <div class="new_prod_box">
-                        <a href="details.html">product name</a>
-                        <div class="new_prod_bg">
-                        <span class="new_icon"><img src="images/new_icon.gif" alt="" title="" /></span>
-                        <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
-                        </div>           
-                    </div>                    
-                    
-                              
-            
+                        <a href="/cdealer/album/{{ album.id }}/"><img src="{{ album.cover.url_100x100 }}" alt="" title="" class="thumb" border="0" /></a>          
+                    </div>                
+            {% endfor %}                                              
             </div> 
           
             

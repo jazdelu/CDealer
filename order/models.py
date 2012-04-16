@@ -24,7 +24,7 @@ PAYMENT_CHOICE=(
 class Order(models.Model):
     d=datetime.datetime.today()
     seriesnum=models.CharField(max_length=32,verbose_name=u'订单流水号',default=d.strftime('%Y%m%d%H%M%S%f'),unique=True)
-    cart=models.ForeignKey(Cart,verbose_name=u'所购专辑')
+    cart=models.ForeignKey(Cart,verbose_name=u'所购专辑',blank=True,null=True)
     user=models.ForeignKey(User,verbose_name=u'下单用户',blank=True,null=True)
     receiver_name=models.CharField(max_length=32,verbose_name=u'收货人姓名')
     receiver_phone=models.CharField(max_length=16,verbose_name=u'收货人电话')

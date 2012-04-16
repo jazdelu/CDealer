@@ -5,5 +5,5 @@ from cdealer.order.models import Order
 class OrderForm(forms.ModelForm):
 	class Meta:
 		model=Order
-		exclude=('status','seriesnum','user')
+		exclude=('status','seriesnum','user','cart','payment')
 		

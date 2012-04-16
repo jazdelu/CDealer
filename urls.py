@@ -5,7 +5,7 @@ from cdealer.customer.views import register,login,logout,change_profile,change_p
 from cdealer.category.views import get_all_categories
 from cdealer.album.views import get_album_list,get_album
 from cdealer.cart.views import add_item,view_cart,delete_item
-from cdealer.order.views import create_order,get_orders
+from cdealer.order.views import checkout,get_orders
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -25,7 +25,7 @@ urlpatterns = patterns('',
 	url(r'^cart/$',view_cart),
 	url(r'^cart/add_item/$',add_item),
 	url(r'^cart/delete_item/$',delete_item),
-	url(r'^order/create_order/$',create_order),
+	url(r'^order/checkout/$',checkout),
 	url(r'^order/my_orderlist/$',get_orders),
     # url(r'^cdealer/', include('cdealer.foo.urls')),
 

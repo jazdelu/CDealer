@@ -95,8 +95,9 @@ TEMPLATE_LOADERS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
 	'django.core.context_processors.request',
 	'django.contrib.auth.context_processors.auth',
-	'cdealer.utils.categoryinfo',
+	'cdealer.category.utils.categoryinfo',
 	'cdealer.cart.utils.create_or_get_cart',
+	'cdealer.link.utils.get_links',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -130,7 +131,8 @@ INSTALLED_APPS = (
     'cdealer.artist',
     'cdealer.album',
     'cdealer.order',
-	'cdealer.cart',
+    'cdealer.cart',
+    'cdealer.link',
     'django_bfm',
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
